@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+// message definition for image
+message Image {
+    int32 width = 1;
+    int32 height = 2;
+    bytes data = 3;
+}
+
+// A request to generate the image, containing a prompt
+message GenerateImageRequest {
+    string prompt = 1;
+}
+
+// A response containing the generated image
+message GenerateImageResponse {
+    bool success = 1;
+    Image image = 2;
+}
+
+// Image Generation Service Definition
+service ImageGeneration {
+    rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse);
+}
